@@ -24,6 +24,9 @@ import readadc # helper functions to read ADC from the Raspberry Pi
 
 initialize some variables with your creditials
 ```python
+with open('./config.json') as config_file:
+    plotly_user_config = json.load(config_file)
+
 username = plotly_user_config['plotly_username']
 api_key = plotly_user_config['plotly_api_key']
 stream_token = plotly_user_config['plotly_streaming_tokens'][0]
