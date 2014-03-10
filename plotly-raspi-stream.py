@@ -22,7 +22,6 @@ p.ioff();
 print p.plot([{'x': [], 'y': [], 'type': 'scatter',
             'stream': {'token': stream_token, 'maxpoints': 1000}
           }], filename='Stream Example8888', fileopt='overwrite')
-print stream_token
 
 # temperature sensor connected channel 0 of mcp3008
 sensor_pin = 0
