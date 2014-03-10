@@ -22,7 +22,7 @@ import time # timer functions
 import readadc # helper functions to read ADC from the Raspberry Pi
 ```
 
-initialize some variables with your creditials
+Initialize some variables with your creditials
 ```python
 with open('./config.json') as config_file:
     plotly_user_config = json.load(config_file)
@@ -33,13 +33,13 @@ stream_token = plotly_user_config['plotly_streaming_tokens'][0]
 stream_server = 'http://stream.plot.ly'
 ```
 
-initialize a Plotly Object
+Initialize a Plotly Object
 ```python
 p = plotly.plotly(username, api_key)
 ```
 
 
-initialize your graph (not streaming yet)
+Initialize your graph (not streaming yet)
 ```python
 p.plot([
 	{'x': [],
