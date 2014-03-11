@@ -14,7 +14,7 @@ Example config.json:
 }
 ```
 
-Next, a few imports
+Create your sensor reading script, and start importing some modules in it!
 ```python
 import plotly # plotly library
 import json # used to parse config.json

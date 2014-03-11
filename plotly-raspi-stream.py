@@ -20,8 +20,8 @@ p = plotly.plotly(username, api_key)
 p.ioff();
 
 print p.plot([{'x': [], 'y': [], 'type': 'scatter',
-            'stream': {'token': stream_token, 'maxpoints': 1000}
-          }], filename='Stream Example8888', fileopt='overwrite')
+            'stream': {'token': stream_token, 'maxpoints': 200}
+          }], filename='Raspberry Pi Streaming Example Values', fileopt='overwrite')
 
 # temperature sensor connected channel 0 of mcp3008
 sensor_pin = 0
@@ -36,4 +36,4 @@ while True:
 		s.write({'x': i, 'y': sensor_data })
 		i+=1
 		# delay between stream posts
-		time.sleep(1)
+		time.sleep(0.25)
