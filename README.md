@@ -1,4 +1,16 @@
 ## Raspberry Pi Realtime Streaming with Plot.ly
+https://plot.ly/~demos/1441/
+[![Plotly-imp](readme_images/pi.jpg)](https://electricimp.com)
+
+First, install the required modules and dependencies:
+```bash
+sudo apt-get install python-dev
+wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | sudo python
+sudo easy_install -U distribute
+sudo apt-get install python-pip
+sudo pip install rpi.gpio
+sudo pip install plotly
+```
 
 Create a config.json file in this directory and input your
 plotly API key, and your generated plotly streaming tokens
