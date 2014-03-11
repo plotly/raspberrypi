@@ -1,6 +1,6 @@
 ## Raspberry Pi Realtime Streaming with Plot.ly
 
-First, install the required modules and dependencies
+First, install the required modules and dependencies:
 ```bash
 sudo apt-get install python-dev
 wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py -O - | sudo python
