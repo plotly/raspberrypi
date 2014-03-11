@@ -1,6 +1,6 @@
 ## Raspberry Pi Realtime Streaming with Plot.ly
 https://plot.ly/~demos/1441/
-[![Plotly-imp](readme_images/pi.jpg)](https://electricimp.com)
+[![Plotly-imp](readme_images/pi.jpg)](https://raspberrypi.com)
 
 First, install the required modules and dependencies:
 ```bash
