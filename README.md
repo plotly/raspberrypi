@@ -42,7 +42,6 @@ with open('./config.json') as config_file:
 username = plotly_user_config['plotly_username']
 api_key = plotly_user_config['plotly_api_key']
 stream_token = plotly_user_config['plotly_streaming_tokens'][0]
-stream_server = 'http://stream.plot.ly'
 ```
 
 Initialize a Plotly Object
