@@ -1,7 +1,9 @@
-## Raspberry Pi Realtime Streaming with Plot.ly
-https://plot.ly/~demos/1441/
+# Raspberry Pi Realtime Streaming with Plot.ly
 [![Plotly-imp](readme_images/pi.jpg)](https://raspberrypi.com)
+### This is an example of a streaming graph: [http://plot.ly/~streaming-demos/6/](http://plot.ly/~streaming-demos/6/)
 
+
+### This is a tutorial on streaming with the Raspberry Pi
 First, install the required modules and dependencies:
 ```bash
 sudo apt-get install python-dev
@@ -14,13 +16,13 @@ sudo pip install plotly
 
 Create a config.json file in this directory and input your
 plotly API key, and your generated plotly streaming tokens
-Sign up to plotly here: https://plot.ly/ssu
-View your API key and streaming tokens here: https://plot.ly/settings
+Sign up to plotly here: [https://plot.ly/ssu](https://plot.ly/ssu)
+View your API key and streaming tokens here: [https://plot.ly/settings](https://plot.ly/settings)
 
 Example config.json:
 ```json
 {
-"plotly_streaming_tokens": ["your", "stream", "tokens"],
+"plotly_streaming_tokens": ["your_stream_token", "another_stream_token"],
 "plotly_api_key": "your_api_key",
 "plotly_username": "your_user_name"
 }
@@ -85,7 +87,7 @@ Start looping and streamin'!
 ```python
 while True:
 	sensor_data = readadc.readadc(sensor_pin, readadc.PINS.SPICLK, readadc.PINS.SPIMOSI, readadc.PINS.SPIMISO, readadc.PINS.SPICS)
-	s.write({'x': i, 'y': sensor_data })
+	stream.write({'x': i, 'y': sensor_data })
 	i+=1 # increment 1 on the 'x' axis with each reading
-	time.sleep(1) # delay between stream posts
+	time.sleep(0.1) # delay between stream posts
 ```
