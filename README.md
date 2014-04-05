@@ -63,7 +63,7 @@ p.plot([
 		'maxpoints': 1000
 		}
 	}],
-	filename='Stream Example8888',
+	filename='Raspi Graph',
 	fileopt='overwrite')
 ```
 
