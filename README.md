@@ -34,6 +34,7 @@ import plotly # plotly library
 import json # used to parse config.json
 import time # timer functions
 import readadc # helper functions to read ADC from the Raspberry Pi
+import datetime
 ```
 
 Initialize some variables with your creditials
@@ -79,15 +80,16 @@ readadc.initialize()
 
 Initialize the Plotly Streaming Object
 ```python
-stream = plotly.stream(stream_token)
+stream = plotly.Stream(stream_token)
 i = 0
 ```
 
 Start looping and streamin'!
 ```python
+stream.open()
 while True:
 	sensor_data = readadc.readadc(sensor_pin, readadc.PINS.SPICLK, readadc.PINS.SPIMOSI, readadc.PINS.SPIMISO, readadc.PINS.SPICS)
-	stream.write({'x': i, 'y': sensor_data })
+	stream.write({'x': datetime.datetime.now(), 'y': sensor_data })
 	i+=1 # increment 1 on the 'x' axis with each reading
 	time.sleep(0.1) # delay between stream posts
 ```
