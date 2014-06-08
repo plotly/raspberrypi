@@ -31,7 +31,7 @@ Example config.json:
 Create your sensor reading script, and start importing some modules in it!
 ```python
 import plotly.plotly as py # plotly library
-from plotly.graph_objs import Scatter, Layout # plotly graph objects
+from plotly.graph_objs import Scatter, Layout, Figure # plotly graph objects
 import json # used to parse config.json
 import time # timer functions
 import readadc # helper functions to read ADC from the Raspberry Pi
@@ -58,7 +58,7 @@ Initialize your graph (not streaming yet)
 ```python
 data = [Scatter(x=[],y=[],stream={'token': stream_token, 'maxpoints': 1000})]
 layout = Layout(title='Live graphing from a Raspberry Pi')
-py.plot(Figure(data=data, layout=layout), filename='Raspi Graph', auto_open=False)
+your_graph_url = py.plot(Figure(data=data, layout=layout), filename='Raspi Graph', auto_open=False)
 ```
 
 Specify the connected channel for your sensor
@@ -84,3 +84,11 @@ while True:
 	stream.write({'x': datetime.datetime.now(), 'y': sensor_data})
 	time.sleep(0.1) # delay between stream posts
 ```
+
+Your graph will be visible in your plotly account ([https://plot.ly/plot](https://plot.ly/plot)) and at `your_graph_url`, the value assigned by the `py.plot` call above.
+
+### Contact
+Questions? Suggestions? Something not look right? Get in touch!
+
+- [@plotlygraphs](https://twitter.com/plotlygraphs)
+- <chris@plot.ly>
