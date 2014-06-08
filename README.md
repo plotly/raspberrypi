@@ -30,7 +30,8 @@ Example config.json:
 
 Create your sensor reading script, and start importing some modules in it!
 ```python
-import plotly # plotly library
+import plotly.plotly as py # plotly library
+from plotly.graph_objs import Scatter, Layout # plotly graph objects
 import json # used to parse config.json
 import time # timer functions
 import readadc # helper functions to read ADC from the Raspberry Pi
@@ -49,23 +50,15 @@ stream_token = plotly_user_config['plotly_streaming_tokens'][0]
 
 Initialize a Plotly Object
 ```python
-p = plotly.plotly(username, api_key)
+py.sign_in(username, api_key)
 ```
 
 
 Initialize your graph (not streaming yet)
 ```python
-p.plot([
-	{'x': [],
-	'y': [],
-	'type': 'scatter',
-	'stream': {
-		'token': stream_token,
-		'maxpoints': 1000
-		}
-	}],
-	filename='Raspi Graph',
-	fileopt='overwrite')
+data = [Scatter(x=[],y=[],stream={'token': stream_token, 'maxpoints': 1000})]
+layout = Layout(title='Live graphing from a Raspberry Pi')
+py.plot(Figure(data=data, layout=layout), filename='Raspi Graph', auto_open=False)
 ```
 
 Specify the connected channel for your sensor
@@ -80,16 +73,14 @@ readadc.initialize()
 
 Initialize the Plotly Streaming Object
 ```python
-stream = plotly.Stream(stream_token)
-i = 0
+stream = py.Stream(stream_token)
+stream.open()
 ```
 
 Start looping and streamin'!
 ```python
-stream.open()
 while True:
 	sensor_data = readadc.readadc(sensor_pin, readadc.PINS.SPICLK, readadc.PINS.SPIMOSI, readadc.PINS.SPIMISO, readadc.PINS.SPICS)
-	stream.write({'x': datetime.datetime.now(), 'y': sensor_data })
-	i+=1 # increment 1 on the 'x' axis with each reading
+	stream.write({'x': datetime.datetime.now(), 'y': sensor_data})
 	time.sleep(0.1) # delay between stream posts
 ```
