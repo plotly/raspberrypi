@@ -1,4 +1,4 @@
-import plotly
+import plotly.plotly as py
 import json
 import time
 import readadc
@@ -16,8 +16,7 @@ api_key = plotly_user_config['plotly_api_key']
 stream_token = plotly_user_config['plotly_streaming_tokens'][0]
 stream_server = 'http://stream.plot.ly'
 
-p = plotly.plotly(username, api_key)
-p.ioff();
+py.sign_in(username, api_key)
 
 print p.plot([{'x': [], 'y': [], 'type': 'scatter',
             'stream': {'token': stream_token, 'maxpoints': 200}
@@ -28,12 +27,13 @@ sensor_pin = 0
 readadc.initialize()
 
 i=0
-s = plotly.stream(stream_token)
+stream = py.Stream(stream_token)
+stream.open()
 
 #the main sensor reading loop
 while True:
 		sensor_data = readadc.readadc(sensor_pin, readadc.PINS.SPICLK, readadc.PINS.SPIMOSI, readadc.PINS.SPIMISO, readadc.PINS.SPICS)
-		s.write({'x': i, 'y': sensor_data })
+		stream.write({'x': i, 'y': sensor_data })
 		i+=1
 		# delay between stream posts
 		time.sleep(0.25)
