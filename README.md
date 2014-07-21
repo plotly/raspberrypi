@@ -14,20 +14,6 @@ sudo pip install rpi.gpio
 sudo pip install plotly
 ```
 
-Create a config.json file in this directory and input your
-plotly API key, and your generated plotly streaming tokens
-Sign up to plotly here: [https://plot.ly/ssu](https://plot.ly/ssu)
-View your API key and streaming tokens here: [https://plot.ly/settings](https://plot.ly/settings)
-
-Example config.json:
-```json
-{
-"plotly_streaming_tokens": ["your_stream_token", "another_stream_token"],
-"plotly_api_key": "your_api_key",
-"plotly_username": "your_user_name"
-}
-```
-
 Create your sensor reading script, and start importing some modules in it!
 ```python
 import plotly.plotly as py # plotly library
@@ -38,20 +24,22 @@ import readadc # helper functions to read ADC from the Raspberry Pi
 import datetime
 ```
 
-Initialize some variables with your creditials
-```python
-with open('./config.json') as config_file:
-    plotly_user_config = json.load(config_file)
-
-username = plotly_user_config['plotly_username']
-api_key = plotly_user_config['plotly_api_key']
-stream_token = plotly_user_config['plotly_streaming_tokens'][0]
-```
 
 Initialize a Plotly Object
 ```python
 py.sign_in(username, api_key)
 ```
+
+Make sure to update the credentials in the script with your own!
+```python
+username = 'your_plotly_username'
+api_key = 'your_api_key'
+stream_token = 'your_stream_token'
+```
+If you don't know your credentials : 
+
+Sign up to plotly here: [https://plot.ly/ssu](https://plot.ly/ssu)
+View your API key and streaming tokens here: [https://plot.ly/settings](https://plot.ly/settings)
 
 
 Initialize your graph (not streaming yet)
