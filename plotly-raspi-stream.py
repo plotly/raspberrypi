@@ -1,4 +1,5 @@
 import plotly.plotly as py
+from plotly.graph_objs import Scatter, Layout, Figure
 import time
 import readadc
 
@@ -8,9 +9,22 @@ stream_token = 'your_stream_token'
 
 py.sign_in(username, api_key)
 
-print py.plot([{'x': [], 'y': [], 'type': 'scatter',
-            'stream': {'token': stream_token, 'maxpoints': 200}
-          }], filename='Raspberry Pi Streaming Example Values', fileopt='overwrite')
+trace1 = Scatter(
+    x=[],
+    y=[],
+    stream=dict(
+        token=stream_token,
+        maxpoints=200
+    )
+)
+
+layout = Layout(
+    title='Raspberry Pi Streaming Sensor Data'
+)
+
+fig = Figure(data=[trace1], layout=layout)
+
+print py.plot(fig, filename='Raspberry Pi Streaming Example Values')
 
 # temperature sensor connected channel 0 of mcp3008
 sensor_pin = 0

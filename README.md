@@ -18,10 +18,8 @@ Create your sensor reading script, and start importing some modules in it!
 ```python
 import plotly.plotly as py # plotly library
 from plotly.graph_objs import Scatter, Layout, Figure # plotly graph objects
-import json # used to parse config.json
 import time # timer functions
 import readadc # helper functions to read ADC from the Raspberry Pi
-import datetime
 ```
 
 Make sure to update the credentials in the script with your own!
@@ -42,9 +40,22 @@ py.sign_in(username, api_key)
 
 Initialize your graph (not streaming yet)
 ```python
-data = [Scatter(x=[],y=[],stream={'token': stream_token, 'maxpoints': 1000})]
-layout = Layout(title='Live graphing from a Raspberry Pi')
-your_graph_url = py.plot(Figure(data=data, layout=layout), filename='Raspi Graph', auto_open=False)
+trace1 = Scatter(
+    x=[],
+    y=[],
+    stream=dict(
+        token=stream_token,
+        maxpoints=200
+    )
+)
+
+layout = Layout(
+    title='Raspberry Pi Streaming Sensor Data'
+)
+
+fig = Figure(data=[trace1], layout=layout)
+
+print py.plot(fig, filename='Raspberry Pi Streaming Example Values')
 ```
 
 Specify the connected channel for your sensor
@@ -78,3 +89,4 @@ Questions? Suggestions? Something not look right? Get in touch!
 
 - [@plotlygraphs](https://twitter.com/plotlygraphs)
 - <chris@plot.ly>
+- <alexandre@plot.ly>
