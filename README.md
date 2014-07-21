@@ -14,51 +14,48 @@ sudo pip install rpi.gpio
 sudo pip install plotly
 ```
 
-Create a config.json file in this directory and input your
-plotly API key, and your generated plotly streaming tokens
-Sign up to plotly here: [https://plot.ly/ssu](https://plot.ly/ssu)
-View your API key and streaming tokens here: [https://plot.ly/settings](https://plot.ly/settings)
-
-Example config.json:
-```json
-{
-"plotly_streaming_tokens": ["your_stream_token", "another_stream_token"],
-"plotly_api_key": "your_api_key",
-"plotly_username": "your_user_name"
-}
-```
-
 Create your sensor reading script, and start importing some modules in it!
 ```python
 import plotly.plotly as py # plotly library
 from plotly.graph_objs import Scatter, Layout, Figure # plotly graph objects
-import json # used to parse config.json
 import time # timer functions
 import readadc # helper functions to read ADC from the Raspberry Pi
-import datetime
 ```
 
-Initialize some variables with your creditials
+Make sure to update the credentials in the script with your own!
 ```python
-with open('./config.json') as config_file:
-    plotly_user_config = json.load(config_file)
-
-username = plotly_user_config['plotly_username']
-api_key = plotly_user_config['plotly_api_key']
-stream_token = plotly_user_config['plotly_streaming_tokens'][0]
+username = 'your_plotly_username'
+api_key = 'your_api_key'
+stream_token = 'your_stream_token'
 ```
+If you don't know your credentials : 
+
+Sign up to plotly here: [https://plot.ly/ssu](https://plot.ly/ssu)
+View your API key and streaming tokens here: [https://plot.ly/settings](https://plot.ly/settings)
 
 Initialize a Plotly Object
 ```python
 py.sign_in(username, api_key)
 ```
 
-
 Initialize your graph (not streaming yet)
 ```python
-data = [Scatter(x=[],y=[],stream={'token': stream_token, 'maxpoints': 1000})]
-layout = Layout(title='Live graphing from a Raspberry Pi')
-your_graph_url = py.plot(Figure(data=data, layout=layout), filename='Raspi Graph', auto_open=False)
+trace1 = Scatter(
+    x=[],
+    y=[],
+    stream=dict(
+        token=stream_token,
+        maxpoints=200
+    )
+)
+
+layout = Layout(
+    title='Raspberry Pi Streaming Sensor Data'
+)
+
+fig = Figure(data=[trace1], layout=layout)
+
+print py.plot(fig, filename='Raspberry Pi Streaming Example Values')
 ```
 
 Specify the connected channel for your sensor
@@ -92,3 +89,4 @@ Questions? Suggestions? Something not look right? Get in touch!
 
 - [@plotlygraphs](https://twitter.com/plotlygraphs)
 - <chris@plot.ly>
+- <alexandre@plot.ly>
