@@ -24,12 +24,6 @@ import readadc # helper functions to read ADC from the Raspberry Pi
 import datetime
 ```
 
-
-Initialize a Plotly Object
-```python
-py.sign_in(username, api_key)
-```
-
 Make sure to update the credentials in the script with your own!
 ```python
 username = 'your_plotly_username'
@@ -41,6 +35,10 @@ If you don't know your credentials :
 Sign up to plotly here: [https://plot.ly/ssu](https://plot.ly/ssu)
 View your API key and streaming tokens here: [https://plot.ly/settings](https://plot.ly/settings)
 
+Initialize a Plotly Object
+```python
+py.sign_in(username, api_key)
+```
 
 Initialize your graph (not streaming yet)
 ```python
