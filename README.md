@@ -1,6 +1,7 @@
 # Raspberry Pi Realtime Streaming with Plot.ly
 [![Plotly-imp](readme_images/pi.jpg)](https://raspberrypi.com)
-### This is an example of a streaming graph: [http://plot.ly/~streaming-demos/6/](http://plot.ly/~streaming-demos/6/)
+#### This is an example of a streaming graph: [http://plot.ly/~streaming-demos/6/](http://plot.ly/~streaming-demos/6/)
+#### Here is an example of how to hook up a [TMP36 Temperature Sensor to your Pi!](https://plot.ly/raspberry-pi/tmp36-temperature-tutorial/)
 
 
 ### This is a tutorial on streaming with the Raspberry Pi
